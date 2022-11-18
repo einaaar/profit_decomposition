@@ -1,0 +1,26 @@
+
+function theoretical_price_xi_tilde = create_theoretical_price_xi_tilde(c,tau,spot_rates,T)
+size(c) %7x2 double
+size(tau) %1x7 cells, 2x90 double
+size(spot_rates) %1x7 cells, 90x... double
+
+T = size(cell2mat(tau(1,1)),2);
+N = size(c,1);
+theoretical_price_xi_tilde = zeros(N,T);
+sum = 0;
+
+%for t = 1:T
+    for i = 1:N
+        tau_asset = cell2mat(tau(1,i));
+        spot_rates_asset = cell2mat(spot_rates(1,i));
+        for j = 1:size(c,2)
+            if round(tau_asset(j,t)*365) > 0
+                %spot_rates(t,round(tau(j,t)*365))
+                sum = sum + c(i,j)'*exp(-spot_rates(t,round(tau_asset(j,t)*365))*tau_asset(j,t));
+            end
+        end
+            theoretical_price_xi_tilde(i,t) = sum;
+            sum = 0; %nollställd
+    end
+%end
+end

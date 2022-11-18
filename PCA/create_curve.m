@@ -2,16 +2,16 @@
 %If not mac, need to download files from lab5 and change paths on lines **.
 
 function [fAll] = create_curve()
-    amplFolderPath =  '/Users/linus/Desktop/TATA62/PCA/';    %*
-    amplSetupFilename = strcat(amplFolderPath,"amplapi/matlab/setUp.m"); %**
-    amplPath = strcat(amplFolderPath, "ampl_macos64"); %**
-    solverFile = strcat(amplPath, "/ipopt"); %**
+    amplFolderPath =  'C:\Users\eirik\Documents\CDIO\PCA\PCA\';    %*
+    amplSetupFilename = strcat(amplFolderPath,"amplapi-win64\amplapi\matlab\setUp.m"); %**
+    amplPath = strcat(amplFolderPath, "ampl_mswin64\ampl_mswin64"); %**
+    solverFile = strcat(amplPath, "\ipopt"); %**
 
     if (~exist(amplSetupFilename,'file') || ~exist(amplPath, 'dir'))
       error('It is necessary to follow the lab instructions to obtain ampl, then change the amplFolderPath to your own path. If another operating system than win64, the folder names in the code has to be changed.');
     end
 
-    ipoptFilename = strcat(amplFolderPath, "ampl_macos64/ipopt"); %**
+    ipoptFilename = strcat(amplFolderPath, "ampl_mswin64\ampl_mswin64\ipopt"); %**
     if (~exist(ipoptFilename,'file') && ~exist(strcat(ipoptFilename,'.exe'),'file'))
       error('It is necessary to follow the lab instructions and copy Ipopt to the correct folder.');
     end

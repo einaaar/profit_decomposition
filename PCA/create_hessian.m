@@ -3,7 +3,9 @@ function hessian = create_hessian(c,tau,AE,spot_rates)
     for i=1:size(tau,2)
         temp=zeros(width(AE));
         for j=1:size(c)
-            temp = temp + AE(round(tau(j,i)*365),:)'*AE(round(tau(j,i)*365),:)*(tau(j,i)^2)*c(j)*exp(-(spot_rates(i,round(tau(j,i)*365))*tau(j,i)));
+            if round(tau(j,i)*365)>0
+                temp = temp + AE(round(tau(j,i)*365),:)'*AE(round(tau(j,i)*365),:)*(tau(j,i)^2)*c(j)*exp(-(spot_rates(i,round(tau(j,i)*365))*tau(j,i)));
+            end
         end
         hessian{i,1}=temp;
     end
